@@ -62,4 +62,4 @@ print "a + b * c:", result
 result = (a + b) * c # How about this?
 print "(a + b) * c:", result
 
-# Go to Works_Try_000
+# Go to Works_002_Exercise
