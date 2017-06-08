@@ -64,4 +64,4 @@ print "Name:", student1.getName()
 print "Age:", student1.getAge()
 print "Year:", student1.year
 
-# Go to Works_Try_007
+# Go to Works_011_Exercise.py
