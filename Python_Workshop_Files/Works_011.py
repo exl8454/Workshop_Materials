@@ -4,6 +4,7 @@
 
 # To create a custom class...
 class Person(object):
+
     name = "Defacto"
     age = 21
 
@@ -53,6 +54,7 @@ del person1
 
 # Just like any other Object-Oriented programming, you can inherit a class
 class Student(Person):
+    
     year = "Junior"
 
     def __init__(self, name, age, year):
