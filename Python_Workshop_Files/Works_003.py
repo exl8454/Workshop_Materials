@@ -19,15 +19,15 @@ print "a > c ?", (a > c)
 print "b > c ?", (b > c)
 # To check if one value is less than other...
 print "a < b ?", (a < b)
-print "a < c ?", (a < b)
+print "a < c ?", (a < c)
 print "b < c ?", (b < c)
 # To check if one value is greater than or equal to other...
 print "a >= b ?", (a >= b)
-print "a >= c ?", (a >= b)
+print "a >= c ?", (a >= c)
 print "b >= c ?", (b >= c)
 # To check if one value is less than or equal to other...
 print "a <= b ?", (a <= b)
-print "a <= c ?", (a <= b)
+print "a <= c ?", (a <= c)
 print "b <= c ?", (b <= c)
 
 # Python has various assignment operators
