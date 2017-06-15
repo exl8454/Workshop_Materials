@@ -1,6 +1,6 @@
-// Arduino Workshop
-// Works_005
-// Analog Devices
+/* Arduino Workshop
+ Works_005
+ Analog Devices */
 
 /**
  * Analog devices can be read by Arduino's Analog pins.
@@ -11,8 +11,8 @@
  * PWM pins.
  */
 
-// Variables
-// No variables on this one!
+/* Variables */
+/* No variables on this one! */
 void setup()
 {
   Serial.begin(9600); // We will talk about this later

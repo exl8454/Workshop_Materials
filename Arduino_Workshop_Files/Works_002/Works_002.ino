@@ -1,6 +1,6 @@
-// Arduino Workshop
-// Works_002
-// Digital I/O (2)
+/* Arduino Workshop
+ Works_002
+ Digital I/O (2) */
 
 /**
  * In digital I/O (2), we will talk about digital signal INPUT.
@@ -8,7 +8,7 @@
  * This sketch will focus on regular input method.
  */
 
-// Variables
+/* Variables */
 int ledPin = 9;
 int buttonPin = 3;
 

@@ -1,13 +1,13 @@
-// Arduino Workshop
-// Works_003
-// Digital I/O (3)
+/* Arduino Workshop
+ Works_003
+ Digital I/O (3) */
 
 /**
  * In digital I/O (3), we will talk about digital signal INPUT in other method.
  * In this sketch, pull-up resistor is used
  */
 
-// Variables
+/* Variables */
 int ledPin = 9;
 int buttonPin = 3;
 int state = LOW;
