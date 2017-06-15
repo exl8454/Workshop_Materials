@@ -16,7 +16,7 @@ print # Empty line
 
 # You can also use 'input' keyword. Difference between raw_input
 # is that input only takes valid Python expression
-#strring = input("Enter your valid Python command: ")
+#string = input("Enter your valid Python command: ")
 #print string
 
 # To access to a file, you use open() function
