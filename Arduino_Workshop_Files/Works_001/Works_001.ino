@@ -1,6 +1,6 @@
-// Arduino Workshop
-// Works_001
-// Digital I/O (1)
+/* Arduino Workshop
+ Works_001
+ Digital I/O (1) */
 
 /**
  * First thing to do with Digital Input and Output, we will try to send signal high and signal low output.
@@ -8,7 +8,7 @@
  * When signal is set to LOW, it means digital pin is sending constant 0V out.
  */
 
-// Variables
+/* Variables */
 int ledPin = 9;
 float blink_interval = 0.5f;
 

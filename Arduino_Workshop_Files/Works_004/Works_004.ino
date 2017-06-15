@@ -1,6 +1,6 @@
-// Arduino Workshop
-// Works_004
-// Digital I/O (4)
+/* Arduino Workshop
+ Works_004
+ Digital I/O (4) */
 
 /**
  * In this sketch, we will use PWM on certain pins.
@@ -12,7 +12,7 @@
  * We will use two buttons and one LED for this sketch
  */
 
-// Variables
+/* Variables */
 int ledPin = 9;
 int upPin = 3;
 int dnPin = 2;

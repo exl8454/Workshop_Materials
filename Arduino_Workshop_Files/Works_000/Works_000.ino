@@ -1,6 +1,6 @@
-// Arduino Workshop
-// Works_000
-// Structure of Arduino programming block
+/* Arduino Workshop
+ Works_000
+ Structure of Arduino programming block */
 
 void setup()
 {
