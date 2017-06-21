@@ -4,15 +4,18 @@ bool pressed = false;
 bool terminated = false;
 long timeBefore = 0L;
 
+int sendMail = 2;
+int stopMail = 3;
+
 void setup()
 {
   pinMode(13, OUTPUT); digitalWrite(13, LOW);
   
-  pinMode(2, INPUT_PULLUP); digitalWrite(2, HIGH);
-  attachInterrupt(digitalPinToInterrupt(2), button, RISING);
+  pinMode(sendMail, INPUT_PULLUP); digitalWrite(sendMail, HIGH);
+  attachInterrupt(digitalPinToInterrupt(sendMail), button, RISING);
 
-  pinMode(3, INPUT_PULLUP); digitalWrite(3, HIGH);
-  attachInterrupt(digitalPinToInterrupt(3), terminate, RISING);
+  pinMode(stopMail, INPUT_PULLUP); digitalWrite(stopMail, HIGH);
+  attachInterrupt(digitalPinToInterrupt(stopMail), terminate, RISING);
 
   Serial.begin(9600);
 }
