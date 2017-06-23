@@ -1,13 +1,14 @@
-// Arduino Workshop
-// Works_006
-// Analog Devices (2)
+/* Arduino Workshop
+   Works_006
+   Analog Devices (2)
+*/
 
 /**
  * Now that we know we can read voltage from potentiometers,
  * lets try to send this value through PWM pins as cycle.
  */
 
-// Variables
+/* Variables */
 static const int blue = 6;
 static const int analogPin = 0;
 
