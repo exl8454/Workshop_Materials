@@ -1,8 +1,9 @@
-// Arduino Workshop
-// Works_017
-// I2C Communication (1)
+/*
+ Arduino Workshop
+ Works_017
+ I2C Communication (1)
 
-/**
+ *
  * I2C stands for Inter-Integrated Circuit.
  * 
  * I2C consist of two main parts; master and slave.
@@ -12,9 +13,9 @@
  * As for example, we will be using MMA8451 acceleration sensor.
  */
 
-#include <Wire.h> // #include is C keyword to add 'package' to a file.
+#include <Wire.h> /* #include is C keyword to add 'package' to a file. */
 
-#define ADDRESS 0x1D // #define keyword simply replaces  defined keyword.
+#define ADDRESS 0x1D /* #define keyword simply replaces defined keyword. */
 #define REG_OUT_X_MSB 0x01
 #define REG_SYSMOD 0x0B
 #define REG_WHOAMI 0x0D
@@ -31,7 +32,7 @@
 
 #define RATE_800_HZ 0b000
 
-// Variables
+/* Variables */
 static int16_t x, y, z;
 static float g_x, g_y, g_z;
 
@@ -39,16 +40,17 @@ void setup()
 {
   Wire.begin();
   
-  writeRegister(REG_CTRL_REG2, 0x04); // Reset sensor
-  while(readRegister(REG_CTRL_REG2) & 0x04); // Wait until sensor resets
+  writeRegister(REG_CTRL_REG2, 0x04); /* Reset sensor */
+  while(readRegister(REG_CTRL_REG2) & 0x04); /* Wait until sensor resets */
 
   writeRegister(REG_XYZ_DATA_CFG, RANGE_2_G);
-  writeRegister(REG_CTRL_REG2, 0x02); // High resolution
-  writeRegister(REG_CTRL_REG4, 0x01); // Low noise
-  writeRegister(REG_CTRL_REG4, 0x01); // DRDY to INT1
+  writeRegister(REG_CTRL_REG2, 0x02); /* High resolution */
+  /* DRDY to INT1 */
+  writeRegister(REG_CTRL_REG4, 0x01);
   writeRegister(REG_CTRL_REG5, 0x01);
 
-  writeRegister(REG_CTRL_REG1, 0x01); // Start sensor
+  /* Start sensor with low noise config */
+  writeRegister(REG_CTRL_REG1, 0x01 | 0x04);
    
   Serial.begin(9600);
 }
@@ -85,7 +87,7 @@ uint8_t readRegister(uint8_t reg)
 {
   Wire.beginTransmission(ADDRESS);
   i2cWrite(reg);
-  Wire.endTransmission(false); // Sending the parameter false will keep the line alive.
+  Wire.endTransmission(false); /* Sending the parameter false will keep the line alive. */
 
   Wire.requestFrom(ADDRESS, 1);
   if(!Wire.available()) return -1;
@@ -103,9 +105,9 @@ void read()
   y = Wire.read(); y <<= 8; y |= Wire.read(); y >>= 2;
   z = Wire.read(); z <<= 8; z |= Wire.read(); z >>= 2;
 
-  // For 8G, divide by 1024
-  // For 4G, divide by 2048
-  // For 2G, divide by 4096
+  /* For 8G, divide by 1024 */
+  /* For 4G, divide by 2048 */
+  /* For 2G, divide by 4096 */
   g_x = (float) x / 4096;
   g_y = (float) y / 4096;
   g_z = (float) z / 4096;
