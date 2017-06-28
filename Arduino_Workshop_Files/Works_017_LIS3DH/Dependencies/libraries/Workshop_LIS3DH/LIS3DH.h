@@ -16,7 +16,12 @@ typedef struct
 	/* Device ID resisters */
 	byte who_am_i = 0x0F;
 	byte device_id = 0x33;
-	byte slave_addr = 0x18; /* Change to 0x19 if SDO is connected to 3.3V*/
+	/*
+		Change to 0x19 if SDO is connected to 3.3V
+		Otherwise pull SDO to GND
+	*/
+
+	byte slave_addr = 0x18;
 
 	/* Sensor control resisters */
 	byte ctrl_reg1 = 0x20;
@@ -33,7 +38,7 @@ typedef struct
 	byte out_y_h = 0x2B;
 	byte out_z_l = 0x2C;
 	byte out_z_h = 0x2D;
-}lis3dh;
+}lis3dh; /* Name of the structure*/
 
 lis3dh sensor; /* Declare struct typedef as variable to use later */
 
@@ -92,9 +97,20 @@ void readSensor(float *gx, float *gy, float *gz)
 	int16_t y = (int16_t)(yl | (yh << 8));
 	int16_t z = (int16_t)(zl | (zh << 8));
 
-	/* If you try to print this value, this will give you raw output. We need to convert this */
-	*gx = (float)x / 8190;
-	*gy = (float)y / 8190;
-	*gz = (float)z / 8190;
+	/*
+		If you try to print this value, this will give you raw output. We need to convert this
+		What we given is output size, which is 16 bits, in two's complement
+		Our full scale is +- 4g, which is 8g (8000mg)
+		In two's complement, maximum value for 16 bits is 65,536(1 0000 0000 0000 0000)
+		We divide full scale by maximum value of 16-bits
+		8000mg / 65536LSB = 0.1220703125 mg/LSB
+		This means, output of 0.1220703125mg is changed per single bit change.
+		However, since we get out output by bits, we want LSB/mg or LSB/g
+		(0.1220703125 mg/LSB)^-1 = 8.192 LSB/mg = 8192 LSB/g
+		From here you can change conversion value a bit (Not too much!)
+	*/
+	*gx = (float)x / 8192;
+	*gy = (float)y / 8192;
+	*gz = (float)z / 8192;
 }
 #endif
