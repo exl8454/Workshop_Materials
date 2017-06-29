@@ -71,14 +71,13 @@ void startSensor()
 	if (device != sensor.device_id);
 
 	/* If sensor is connected, start changing configuration */
-	writeByte(sensor.ctrl_reg1, 0x77);
-	writeByte(sensor.ctrl_reg3, 0x10);
-	writeByte(sensor.ctrl_reg4, 0x98);
+	writeByte(sensor.ctrl_reg1, 0x77); /* 0111 0111 */
+	writeByte(sensor.ctrl_reg4, 0x98); /* 1001 1000 */
 
 	/* Sensor is ready to go! */
 }
 
-void readSensor(float *gx, float *gy, float *gz)
+void readSensor(float *g, long *raw)
 {
 	/*
 		Datasheet says outputs are 16-bit (hence why we have 2 registers for one axis) 
@@ -93,9 +92,14 @@ void readSensor(float *gx, float *gy, float *gz)
 	uint8_t zh = readByte(sensor.out_z_h);
 
 	/* Now to convert this, we shift high bits to LEFT so low bits stays on RIGHT */
-	int16_t x = (int16_t)(xl | (xh << 8));
-	int16_t y = (int16_t)(yl | (yh << 8));
-	int16_t z = (int16_t)(zl | (zh << 8));
+	int16_t x = (xl | (xh << 8));
+	int16_t y = (yl | (yh << 8));
+	int16_t z = (zl | (zh << 8));
+
+	/* Save raw output so we can see it */
+	raw[0] = x;
+	raw[1] = y;
+	raw[2] = z;
 
 	/*
 		If you try to print this value, this will give you raw output. We need to convert this
@@ -107,10 +111,9 @@ void readSensor(float *gx, float *gy, float *gz)
 		This means, output of 0.1220703125mg is changed per single bit change.
 		However, since we get out output by bits, we want LSB/mg or LSB/g
 		(0.1220703125 mg/LSB)^-1 = 8.192 LSB/mg = 8192 LSB/g
-		From here you can change conversion value a bit (Not too much!)
 	*/
-	*gx = (float)x / 8192;
-	*gy = (float)y / 8192;
-	*gz = (float)z / 8192;
+	g[0] = (float)x / 8192;
+	g[1] = (float)y / 8192;
+	g[2] = (float)z / 8192;
 }
 #endif

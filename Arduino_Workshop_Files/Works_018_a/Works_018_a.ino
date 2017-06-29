@@ -1,13 +1,14 @@
-// Arduino Workshop
-// Works_018
-// I2C Communication (2)
-
-/**
- * Previous sketch looks unorganized. Its time to tidy-up the code.
+/*
+ * Arduino Workshop
+ * Works_018_a
+ * I2C Communication (2)
+ * 
+ * Previously, we had various definitions around sketch.
+ * This sketch shows how to 'eliminate' them.
  */
 
 #include <Wire.h>
-// We make our own library in Arduino!
+/* We make our own library in Arduino! */
 #include <Works_Accel.h>
 
 Works_Accel accel;
@@ -30,6 +31,4 @@ void loop()
   Serial.println();
   delay(100);
 }
-
-// Go to Try_003
 
