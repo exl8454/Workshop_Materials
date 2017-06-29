@@ -1,16 +1,9 @@
 /*
- Arduino Workshop
- Works_017
- I2C Communication (1)
-
- *
- * I2C stands for Inter-Integrated Circuit.
+ * Arduino Workshop
+ * Works_017_b
+ * I2C Communication (1)
  * 
- * I2C consist of two main parts; master and slave.
- * Master is a device which requests data from slave.
- * Slave is a device which receives and sends data from master.
- * 
- * As for example, we will be using MMA8451 acceleration sensor.
+ * This code shows how to work with I2C devices with Arduino.
  */
 
 #include <Wire.h> /* #include is C keyword to add 'package' to a file. */
