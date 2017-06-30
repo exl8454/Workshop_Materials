@@ -9,13 +9,13 @@ import smtplib
 import serial
 
 # Variables
-port = serial.Serial('COM5', 9600)
+port = serial.Serial('COM7', 9600)
 
 startedTime = datetime.datetime.now()
 
-TO = 'targetmail@mail.com'
-FROM = 'mymail@mail.com'
-PASS = 'Password'
+TO = 'hsmchul@hotmail.com'
+FROM = 'cshinIoT@gmail.com'
+PASS = 'ILoveLaprasSoMuch!'
 SUBJECT = 'IoT - Button was Pressed!'
 
 running = True;

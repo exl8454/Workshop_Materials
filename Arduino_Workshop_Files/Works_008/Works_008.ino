@@ -1,12 +1,14 @@
+/*
 // Arduino Workshop
 // Works_008
 // External Interrupts
+*/
 
 /**
  * This sketch shows how to use external interrupts using digital pins.
  */
 
-// Variables
+/* Variables */
 int ledPin = 9;
 int cycleUp = 3;
 int cycleDn = 2;
@@ -20,6 +22,18 @@ int cycleDn = 2;
 volatile int cycle = 0;
 
 int value;
+
+void increaseCycle()
+{
+  cycle++;
+  cycle = (cycle > 100) ? 100 : cycle;
+}
+
+void decreaseCycle()
+{
+  cycle--;
+  cycle = (cycle < 0) ? 0 : cycle;
+}
 
 void setup()
 {
@@ -52,17 +66,5 @@ void loop()
 {
   value = map(cycle, 0, 100, 0, 255);
   analogWrite(ledPin, cycle);
-}
-
-void increaseCycle()
-{
-  cycle++;
-  cycle = (cycle > 100) ? 100 : cycle;
-}
-
-void decreaseCycle()
-{
-  cycle--;
-  cycle = (cycle < 0) ? 0 : cycle;
 }
 

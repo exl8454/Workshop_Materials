@@ -1,6 +1,8 @@
+/*
 // Arduino Workshop
 // Exercise_000
 // LED Matrix!
+*/
 
 /**
  * Time to make simple 2 by 2 LED matrix!
@@ -9,7 +11,7 @@
  * We will be using rows as positive and columns as negative
  */
 
-// Variables
+/* Variables */
 int row1 = 2;
 int row2 = 3;
 
@@ -24,6 +26,7 @@ void setup()
   pinMode(col2, OUTPUT); digitalWrite(col2, LOW);
 }
 
+/*
 // Do these ONE AT A TIME!
 // 1. Turn on row 1
 // 2. Turn on column 1
@@ -32,6 +35,7 @@ void setup()
 // 5. Turn off row1, then turn on row 2
 // 6. Reset all rows and columns
 // 7. Now, try to turn on LEDs on (1,1) and (2,2)
+*/
 void loop()
 {
 }
