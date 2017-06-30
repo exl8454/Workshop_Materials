@@ -27,7 +27,7 @@ void setup()
   /* To request data from slave, use Wire.requestFrom() */
   Wire.requestFrom(0x00, 1); /* First use device address, then use number of bytes to read */
 
-  /* To read single bit from slave, use Wire.read() */
+  /* To read single byte from slave, use Wire.read() */
   Wire.read(); /* No parameter is needed */
 
   /* We can also use Wire.available() to check how many bytes of data is sitting on I2C data line */
@@ -37,15 +37,16 @@ void setup()
   Wire.endTransmission(); /* No parameter is needed */
 
   /* Generic sequence for writing to slave (Assuming Wire.begin() is already called) */
-  Wire.beginTransmission(0x00);
-  Wire.write(0x00);
+  Wire.beginTransmission(0xAA); /* Slave's address */
+  Wire.write(0xAB); /* Register (inside slave) address */
+  Wire.write(0x00); /* Value to write */
   Wire.endTransmission();
 
   /* Generic sequence for reading from slave */
-  Wire.beginTransmission(0x00);
-  Wire.write(0x00);
+  Wire.beginTransmission(0xAA);
+  Wire.write(0xAC);
   Wire.endTransmission();
-  Wire.requestFrom(0x00, 1);
+  Wire.requestFrom(0xAA, 1);
   byte data = Wire.read();
 }
 
