@@ -13,7 +13,7 @@
 /* Typedef is like dictionary in Python. It can handle multiple data in single variable */
 typedef struct
 {
-	/* Device ID resisters */
+	/* Device ID registers */
 	byte who_am_i = 0x0F;
 	byte device_id = 0x33;
 	/*
@@ -23,7 +23,7 @@ typedef struct
 
 	byte slave_addr = 0x18;
 
-	/* Sensor control resisters */
+	/* Sensor control registers */
 	byte ctrl_reg1 = 0x20;
 	byte ctrl_reg2 = 0x21;
 	byte ctrl_reg3 = 0x22;
@@ -31,7 +31,7 @@ typedef struct
 	byte ctrl_reg5 = 0x24;
 	byte ctrl_reg6 = 0x25;
 
-	/* Output control resisters */
+	/* Output control registers */
 	byte out_x_l = 0x28;
 	byte out_x_h = 0x29;
 	byte out_y_l = 0x2A;

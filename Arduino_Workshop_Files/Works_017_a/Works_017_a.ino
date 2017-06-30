@@ -16,6 +16,53 @@ void setup()
   Serial.begin(9600);
 
   /* Start writing from here */
+  bitA = 0b00000001;
+  bitB = 0b00000001;
+
+  printBits();
+
+  bitA = bitA << 2;
+  bitB = bitB >> 2;
+  printBits();
+
+  bitB = 0b00000111;
+  bitB = bitB >> 2;
+  printBits();
+
+  bitA = 0b00000001;
+  bitB = 0b00000010;
+  bitC = bitA | bitB;
+  printBits();
+
+  bitA = 0b00000001;
+  bitB = 0b00000001;
+  bitC = bitA | (bitB << 1);
+  printBits();
+
+  bitA = 0b11111110;
+  bitB = 0b11111100;
+  bitC = bitA & bitB;
+  printBits();
+
+  bitA = 0b10101100;
+  bitB = 0b00000100;
+  bitC = bitA & bitB;
+  printBits();
+
+  bitA = 0b10101100;
+  bitB = 0b11111111;
+  bitC = bitA ^ bitB;
+  printBits();
+
+  bitA = 0b10101010;
+  bitB = ~bitA;
+  bitC  = bitA | bitB;
+  printBits();
+
+  bitA = 0b10101100;
+  bitB = 0b10001111;
+  output = (bitA << 8) | bitB;
+  printBits();
 }
 
 void printBits()
