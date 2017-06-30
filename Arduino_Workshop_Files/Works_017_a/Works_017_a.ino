@@ -18,10 +18,10 @@ void setup()
 
 void printBits()
 {
-  Serial.print("BitA: "); Serial.println(bitA, BIN);
-  Serial.print("BitB: "); Serial.println(bitB, BIN);
-  Serial.print("BitC: "); Serial.println(bitC, BIN);
-  Serial.print("16-bit Output: "); Serial.println(output, BIN);
+  Serial.print("BitA: "); Serial.print(bitA, BIN); Serial.print(" is "); Serial.println(bitA, DEC);
+  Serial.print("BitB: "); Serial.print(bitB, BIN); Serial.print(" is "); Serial.println(bitB, DEC);
+  Serial.print("BitC: "); Serial.print(bitC, BIN); Serial.print(" is "); Serial.println(bitC, DEC);
+  Serial.print("16-bit Output: "); Serial.print(output, BIN); Serial.print(" is "); Serial.println(output, DEC);
   Serial.println();
 }
 

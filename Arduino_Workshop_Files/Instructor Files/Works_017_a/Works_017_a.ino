@@ -94,6 +94,16 @@ void setup()
   printBits();
 
   /*
+   * To inverse any bit in a variable, simply use bitwise NOT to negate all bits in a
+   * single data. Here, we use bitwise NOT on bitA, save it to bitB, then mask both
+   * on bitC, which results 0b11111111.
+   */
+  bitA = 0b10101010;
+  bitB = ~bitA;
+  bitC = bitA | bitB;
+  printBits();
+
+  /*
    * Previously, we've been masking bits between bits with same size. We can merge two
    * small-size bits into one larger bit areas. Here we merge two 8-bit into 16-bit
    * field. Notice the 1s on first 16 bits, this is because when printing binary format
@@ -108,10 +118,10 @@ void setup()
 
 void printBits()
 {
-  Serial.print("BitA: "); Serial.println(bitA, BIN);
-  Serial.print("BitB: "); Serial.println(bitB, BIN);
-  Serial.print("BitC: "); Serial.println(bitC, BIN);
-  Serial.print("16-bit Output: "); Serial.println(output, BIN);
+  Serial.print("BitA: "); Serial.print(bitA, BIN); Serial.print(" is "); Serial.println(bitA, DEC);
+  Serial.print("BitB: "); Serial.print(bitB, BIN); Serial.print(" is "); Serial.println(bitB, DEC);
+  Serial.print("BitC: "); Serial.print(bitC, BIN); Serial.print(" is "); Serial.println(bitC, DEC);
+  Serial.print("16-bit Output: "); Serial.print(output, BIN); Serial.print(" is "); Serial.println(output, DEC);
   Serial.println();
 }
 
