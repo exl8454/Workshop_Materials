@@ -3,106 +3,54 @@
  * Works_017_b
  * I2C Communication (1)
  * 
- * This code shows how to work with I2C devices with Arduino.
+ * Now we got through basic bitwise operation, let's look at Arduino's default
+ * I2C library
  */
 
-#include <Wire.h> /* #include is C keyword to add 'package' to a file. */
-
-#define ADDRESS 0x1D /* #define keyword simply replaces defined keyword. */
-#define REG_OUT_X_MSB 0x01
-#define REG_SYSMOD 0x0B
-#define REG_WHOAMI 0x0D
-#define REG_XYZ_DATA_CFG 0x0E
-
-#define REG_CTRL_REG1 0x2A
-#define REG_CTRL_REG2 0x2B
-#define REG_CTRL_REG4 0x2D
-#define REG_CTRL_REG5 0x2E
-
-#define RANGE_8_G 0b10
-#define RANGE_4_G 0b01
-#define RANGE_2_G 0b00
-
-#define RATE_800_HZ 0b000
-
-/* Variables */
-static int16_t x, y, z;
-static float g_x, g_y, g_z;
+/*
+ * Wire.h is Arduino's library for I2C. It is built for us so we don't have to
+ * micromanage the signal controls for I2C Communication!
+ */
+#include <Wire.h>
 
 void setup()
 {
+  /* To start I2C Communication, use Wire.begin() function. No parameters */
   Wire.begin();
+
+  /* To start transmission to target slave device, use Wire.beginTransmission */
+  Wire.beginTransmission(0x00); /* Device address as parameter! */
   
-  writeRegister(REG_CTRL_REG2, 0x04); /* Reset sensor */
-  while(readRegister(REG_CTRL_REG2) & 0x04); /* Wait until sensor resets */
+  /* Once you called to slave device, use Wire.write() to send data to slave! */
+  Wire.write(0x00); /* Although you can write as much as you can, do not exceed 8 bits! */
+  
+  /* To request data from slave, use Wire.requestFrom() */
+  Wire.requestFrom(0x00, 1); /* First use device address, then use number of bytes to read */
 
-  writeRegister(REG_XYZ_DATA_CFG, RANGE_2_G);
-  writeRegister(REG_CTRL_REG2, 0x02); /* High resolution */
-  /* DRDY to INT1 */
-  writeRegister(REG_CTRL_REG4, 0x01);
-  writeRegister(REG_CTRL_REG5, 0x01);
+  /* To read single bit from slave, use Wire.read() */
+  Wire.read(); /* No parameter is needed */
 
-  /* Start sensor with low noise config */
-  writeRegister(REG_CTRL_REG1, 0x01 | 0x04);
-   
-  Serial.begin(9600);
+  /* We can also use Wire.available() to check how many bytes of data is sitting on I2C data line */
+  while(!Wire.available() >= 5); /* This will loop infinitley until available data is more than 5 bytes! */
+
+  /* To close I2C Communication with slave device, use Wire.endTransmission() */
+  Wire.endTransmission(); /* No parameter is needed */
+
+  /* Generic sequence for writing to slave (Assuming Wire.begin() is already called) */
+  Wire.beginTransmission(0x00);
+  Wire.write(0x00);
+  Wire.endTransmission();
+
+  /* Generic sequence for reading from slave */
+  Wire.beginTransmission(0x00);
+  Wire.write(0x00);
+  Wire.endTransmission();
+  Wire.requestFrom(0x00, 1);
+  byte data = Wire.read();
 }
 
 void loop()
 {
-  read();
-  Serial.print("X: "); Serial.print(g_x);
-  Serial.print(" Y: "); Serial.print(g_y);
-  Serial.print(" Z: "); Serial.println(g_z);
-  Serial.println();
-  delay(100);
-}
-
-uint8_t i2cRead()
-{
-  return Wire.read();
-}
-
-void i2cWrite(uint8_t x)
-{
-  Wire.write((uint8_t) x);
-}
-
-void writeRegister(uint8_t reg, uint8_t val)
-{
-  Wire.beginTransmission(ADDRESS);
-  i2cWrite(reg);
-  i2cWrite(val);
-  Wire.endTransmission();
-}
-
-uint8_t readRegister(uint8_t reg)
-{
-  Wire.beginTransmission(ADDRESS);
-  i2cWrite(reg);
-  Wire.endTransmission(false); /* Sending the parameter false will keep the line alive. */
-
-  Wire.requestFrom(ADDRESS, 1);
-  if(!Wire.available()) return -1;
-  return i2cRead();
-}
-
-void read()
-{
-  Wire.beginTransmission(ADDRESS);
-  i2cWrite(REG_OUT_X_MSB);
-  Wire.endTransmission(false);
-
-  Wire.requestFrom(ADDRESS, 6);
-  x = Wire.read(); x <<= 8; x |= Wire.read(); x >>= 2;
-  y = Wire.read(); y <<= 8; y |= Wire.read(); y >>= 2;
-  z = Wire.read(); z <<= 8; z |= Wire.read(); z >>= 2;
-
-  /* For 8G, divide by 1024 */
-  /* For 4G, divide by 2048 */
-  /* For 2G, divide by 4096 */
-  g_x = (float) x / 4096;
-  g_y = (float) y / 4096;
-  g_z = (float) z / 4096;
+  /* No loop function! */
 }
 
