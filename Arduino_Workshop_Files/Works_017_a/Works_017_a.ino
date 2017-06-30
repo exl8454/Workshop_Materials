@@ -14,6 +14,8 @@ void printBits();
 void setup()
 {
   Serial.begin(9600);
+
+  /* Start writing from here */
 }
 
 void printBits()
