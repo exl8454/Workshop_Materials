@@ -1,12 +1,12 @@
-// Arduino Workshop
-// Works_015
-// USART Communication (4)
-
-/**
+/*
+ * Arduino Workshop
+ * Works_015
+ * USART Communication (4)
+ * 
  * Remote control of LED!
  */
 
-// Variables
+/* Variables */
 static const int red = 9;
 static const int yellow = 10;
 static const int green = 11;

@@ -1,10 +1,10 @@
-// Arduino Workshop
-// Works_014
-// USART Communication (3)
-
-/**
+/*
+ * Arduino Workshop
+ * Works_014
+ * USART Communication (3)
+ * 
  * Notice we had empty lines in serial monitor.
- * Let's filter out what we read and send.
+ * Let's filter out what we read and send
  */
 
 char data;

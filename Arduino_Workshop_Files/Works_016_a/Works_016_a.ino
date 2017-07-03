@@ -1,16 +1,16 @@
-// Arduino Workshop
-// Works_016
-// USART Communication (5)
-
-/**
+/*
+ * Arduino Workshop
+ * Works_016_a
+ * USART Communication (5)
+ * 
  * A good example of data handling
  * 
- * Obviously, uC does not know how to sort out data.
+ * Obviously, uC does not know what kind of data is coming in.
  * To sort data out and handle our execution from command,
- * WE need to sort the data out.
+ * WE need to short hte data out.
  */
  
-// Variables
+/* Variables */
 static const int red = 9;
 static const int yellow = 10;
 static const int green = 11;
