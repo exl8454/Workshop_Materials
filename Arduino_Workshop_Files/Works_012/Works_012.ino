@@ -1,15 +1,17 @@
-// Arduino Workshop
-// Works_012
-// USART Communication (1)
-
-/**
+/*
+ * Arduino Workshop
+ * Works_012
+ * USART Communication (1)
+ * 
  * Arduino has default serial communication pin using
  * USART (Universal Synchronous/Asynchronous Receiver/Transmitter)
  * protocol.
  */
 
-// Variables
-// No variables on this one!
+/*
+ * Variables
+ * No variables on this one!
+ */
  
 void setup()
 {
