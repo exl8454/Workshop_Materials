@@ -21,7 +21,7 @@ void setup()
   pinMode(yellow, OUTPUT);
   pinMode(green, OUTPUT);
   
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
 
 void loop()
@@ -48,5 +48,9 @@ void loop()
     digitalWrite(red, red_state);
     digitalWrite(yellow, yellow_state);
     digitalWrite(green, green_state);
+
+    Serial.print("Red is now "); Serial.println(red_state);
+    Serial.print("Yellow is now "); Serial.println(yellow_state);
+    Serial.print("Green is now "); Serial.println(green_state);
   }
 }

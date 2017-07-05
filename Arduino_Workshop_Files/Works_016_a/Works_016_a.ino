@@ -8,6 +8,8 @@
  * Obviously, uC does not know what kind of data is coming in.
  * To sort data out and handle our execution from command,
  * WE need to short hte data out.
+ * 
+ * Here, we will send a 
  */
  
 /* Variables */
@@ -21,9 +23,10 @@ void setup()
   pinMode(yellow, OUTPUT);
   pinMode(green, OUTPUT);
   
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
 
+/* [Color] [PWM] */
 void loop()
 {
   if(Serial.available() > 0)
@@ -31,6 +34,7 @@ void loop()
     char led = Serial.read();
 
     while(Serial.available() < 4);
+    
     char val[4];
     Serial.read();
     val[0] = Serial.read();
@@ -38,9 +42,6 @@ void loop()
     val[2] = Serial.read();
     val[3] = '\0';
     int pwm = atoi(val);
-    
-    Serial.print("Pin: "); Serial.println(led);
-    Serial.print("PWM: "); Serial.println(pwm);
     
     switch(led)
     {
@@ -57,6 +58,8 @@ void loop()
         analogWrite(green, pwm);
       break;
     }
+    Serial.print("Pin: "); Serial.println(led);
+    Serial.print("PWM: "); Serial.println(pwm);
   }
   Serial.flush();
 }
