@@ -13,7 +13,7 @@
  * 
  * Also, Arduino must be able to perform multiple commands sent from single line. That is, 
  * following instruction should work without a problem.
- * -125 125 ADD
+ * -125 125 ADD 050 050 SUB
  * 
  * Each command should not exceed 100 characters (It is limited by the line variable)
  * 
