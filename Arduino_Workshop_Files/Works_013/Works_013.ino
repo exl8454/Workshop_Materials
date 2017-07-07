@@ -1,7 +1,3 @@
-// Arduino Workshop
-// Works_013
-// USART Communication (2)
-
 /*
  * Arduino Workshop
  * Works_013
@@ -12,11 +8,11 @@
 
  /* Variables */
 byte data[5];
-String line;
+String line; /* Though supported by Arduino, highly discouraged for data parsing */
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
 
 void loop()
@@ -26,7 +22,7 @@ void loop()
    */
   byte data = Serial.read();
   Serial.print("Received: ");
-  Serial.println(data);
+  Serial.println((char) data);
 
   /**
    * Serial.readBytes(buffer, size) reads in multiple bytes.

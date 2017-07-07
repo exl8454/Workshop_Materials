@@ -11,7 +11,7 @@ char data;
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
 
 void loop()
@@ -26,5 +26,6 @@ void loop()
     data = Serial.read();
     Serial.print("Received: ");
     Serial.println(data);
+    Serial.print("Available :"); Serial.println(Serial.available());
   }
 }
