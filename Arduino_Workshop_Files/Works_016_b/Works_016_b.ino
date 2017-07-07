@@ -16,7 +16,7 @@ static const int yellow = 10;
 static const int green = 11;
 
 /* 3 characters for color, 3 digits for value, and single space for delimeter*/
-char data[21]; /* We are assuming we will not have more than 10 characters in single data */
+char data[21]; /* We are assuming we will not have more than 21 characters in single data */
 char *delim = " ";
 char *token;
 
