@@ -26,5 +26,6 @@ void loop()
     data = Serial.read();
     Serial.print("Received: ");
     Serial.println(data);
+    Serial.print("Available :"); Serial.println(Serial.available());
   }
 }
