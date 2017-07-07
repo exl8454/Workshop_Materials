@@ -57,9 +57,9 @@ void loop()
     if(!strcmp(pin, "RED"))
       analogWrite(red, value);
     if(!strcmp(pin, "YEL"))
-      analogWrite(red, value);
+      analogWrite(yellow, value);
     if(!strcmp(pin, "GRN"))
-      analogWrite(red, value);
+      analogWrite(green, value);
   } /* end of data check loop */
 }
 

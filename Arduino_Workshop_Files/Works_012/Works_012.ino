@@ -35,6 +35,7 @@ void loop()
    * Serial.println(data) sends data FROM Arduino TO computer.
    * Note that ln indicates sent data has line change delimiter as well.
    */
+  Serial.print(analogRead(0));
   Serial.println(analogRead(0));
   delay(10);
 }

@@ -26,7 +26,7 @@ void setup()
   Serial.begin(115200);
 }
 
-/* [Color] [PWM] */
+/* [R,Y,G] [PWM] */
 void loop()
 {
   if(Serial.available() > 0)
