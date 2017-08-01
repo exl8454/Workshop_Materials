@@ -1,19 +1,21 @@
-// Arduino Workshop
-// Works_011
-// Tasking multiple things (3)
-
-/**
- * Previous sketch showed how using millis(), but in order to check if it was time to do
- * a task, we had to call millis() every loop.
- * 
- * This time, instead of checking the time for each loop, we will use internal interrupt
- * so the microcontroller will call a specific method.
- * 
- * Atmega328P has 3 timers; Timer0, Timer1, and Timer2. Timer0 is used to call millis()
- * function in Arduino, so Timer0 is what we want to use to interrupt.
+/*
+*  Arduino Workshop
+ * Works_011
+*  Tasking multiple things (3)
  */
 
-// Variables
+/*
+*  Previous sketch showed state machine using millis(), but in order to check if it was time to do
+ * a task, we had to call millis() every loop.
+* 
+ * This time, instead of checking the time for each loop, we will use internal interrupt
+*  so the microcontroller will call a specific method.
+ * 
+*  Atmega328P has 3 timers; Timer0, Timer1, and Timer2. Timer0 is used to call millis()
+ * function in Arduino, so Timer0 is what we want to use to interrupt.
+*/
+
+/* Variables */
 const static int green = 9;
 const static int yellow = 10;
 const static int red = 11;
@@ -53,6 +55,8 @@ void setup()
    * Here, we set interrupt value to a certain value(0xAF)
    * so compare interrupt can be called. This value must be
    * between 0 to 255(0xFF), so Timer0(0~255) can be matched.
+   * 
+   * Why 0~255? Because Timer 0 is a 8-bit timer.
    */
   OCR0A = 0xAF;
   /**
@@ -112,7 +116,7 @@ ISR(TIMER0_COMPA_vect)
 
 void loop()
 {
-  /**
+  /*
    * This is empty. Everything is done inside interrupt loop!
    */
 }

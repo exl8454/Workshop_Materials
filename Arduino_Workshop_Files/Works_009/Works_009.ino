@@ -1,14 +1,15 @@
-// Arduino Workshop
-// Works_009
-// Tasking multiple things
-
-/**
- * Blink blink!
- * At the end of this section, we should have three LEDs blinking at different rate,
- * at the same time.
+/*
+*  Arduino Workshop
+ * Works_009
+*  Tasking multiple things
  */
+
+/*
+*  Blink blink!
+ * At the end of this section, we should have three LEDs blinking at different rate,
+*/
  
-// Variables
+/* Variables */
 const static int red = 11;
 const static int yellow = 10;
 const static int green = 9;

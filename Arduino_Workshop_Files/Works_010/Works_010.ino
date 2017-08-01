@@ -1,17 +1,19 @@
-// Arduino Workshop
-// Works_010
-// Tasking multiple things (2)
-
-/**
- * Previous example doesn't blink all LEDs at the same time.
- * 
- * This sketch will show you first step into multi-tasking; the state machine.
- * State machine basically checks on current state of a certain pins, such as
- * LED pins, and depending on the state of the pin, a machine does certain
- * operation.
+/*
+*  Arduino Workshop
+ * Works_010
+*  Tasking multiple things (2)
  */
 
-// Variables
+/*
+*  Previous example doesn't blink all LEDs at the same time.
+ * 
+*  This sketch will show you first step into multi-tasking; the state machine.
+ * State machine basically checks on current state of a certain pins, such as
+*  LED pins, and depending on the state of the pin, a machine does certain
+ * operation.
+*/
+
+/* Variables */
 const static int green = 9;
 const static int yellow = 10;
 const static int red = 11;
