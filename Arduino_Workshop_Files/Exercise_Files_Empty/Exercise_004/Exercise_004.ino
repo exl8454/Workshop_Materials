@@ -18,10 +18,10 @@
 *  7. At the end, loop() function should be empty.
  *  
 *  Hints
- * 1. Buttons uses pull-up resistors.
-*  2. Remember external interrupt pins?
- * 3. Remember minimum and maximum PWM value?
-*  4. Remember timer masking?
+ * 1. Buttons uses pull-up resistors. (Digital Input/Output)
+*  2. Remember external interrupt pins? (Button Control)
+ * 3. Remember minimum and maximum PWM value? (Fading)
+*  4. Remember timer masking? (Multi-Tasking)
  * 
 *  Do not alter given variables! Only add/remove/modify custom variables!
  */
