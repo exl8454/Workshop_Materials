@@ -16,9 +16,9 @@
  * directly via program. However, you can check available space with simple code.
  * SRAM is where all the variables are stored. This includes static data, local
  * variable, and dynamic items. Static data is stored at the 'bottom' of the SRAM
- * space. Dynamic data, also known as heap, starts from top of the SRAM block and
- * accumulates towards bottom. Stack, the local variables, starts from 'top' of the
- * static data, and moves upwards. This means, when stack and heap meets each other,
+ * space. Dynamic data, also known as heap, starts from top of the static block and
+ * accumulates towards top. Stack, the local variables, starts from 'top' of the
+ * SRAM block, and moves downwards. This means, when stack and heap meets each other,
  * this causes stack overflow within the SRAM and causes program to stop execute.
  * 
  * Also note, if heap memory frees itself over time, there is a case where freed memory
