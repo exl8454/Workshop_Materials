@@ -21,7 +21,13 @@
  * static data, and moves upwards. This means, when stack and heap meets each other,
  * this causes stack overflow within the SRAM and causes program to stop execute.
  * 
- * EEPROM stands for Electronically Erasable Programmable Read-Only-Memory. Inside
+ * Also note, if heap memory frees itself over time, there is a case where freed memory
+ * space is within heap. If heap memory is managed badly(ie. memory is freed somewhere
+ * inbetween allocated heap spaces), this will case 'fragment' within heap memory,
+ * causing fragmentation. You can still 'use' these fragmented spaces, but it will be
+ * hard to allocate any dynamic memory bigger than fragmented spaces.
+ * 
+ * EEPROM stands for Electronically Erasable, Programmable, Read-Only-Memory. Inside
  * of ATmega chip, it has built-in EEPROM space (not too many, but enough to store
  * pre-determined data) which can be store as byte data. While READING from EEPROM is
  * unlimited, WRITING to EEPROM is limited to 100,000 cycles.
