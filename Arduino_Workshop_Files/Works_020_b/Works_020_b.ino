@@ -84,7 +84,6 @@ void setup()
         Serial.println("Could not reallocate heap_int");
 
       Serial.print("New heap_int size: "); Serial.println(heap_size);
-      Serial.print("SRAM Space: "); Serial.println(getSRAM());
     }
 
     heap_int[i] = i;
@@ -131,7 +130,6 @@ void setup()
         Serial.println("Could not reallocate heap_int");
 
       Serial.print("New heap_int size: "); Serial.println(heap_size);
-      Serial.print("SRAM Space: "); Serial.println(getSRAM());
     }
 
     heap_int[i] = i;
@@ -193,7 +191,7 @@ void setup()
   Serial.println(getSRAM());
   Serial.println();
 
-  /* If you allocated matrix to heap, make sure you free from inside->out! */
+  /* If you allocated matrix to heap, make sure you free from inside-out! */
   for(i = 0; i < 2; i++)
   {
     /* free(heap_matrix_float); Don't do this! */
@@ -209,7 +207,14 @@ void setup()
   Serial.println(getSRAM());
   Serial.println();
 
-  /* Let's try allocating single string to heap */
+  /* 
+  *  Let's try allocating single string to heap.
+   * We know string in C is composition(array) of characters in array.
+  *  And array always points at first index, index zero. This means,
+   * since memory allocation functions returns memory pointer of allocated
+  *  memory, if we allocate memory size enough to store any given char array,
+   * we have dynamically allocated memory for single string.
+  */
   char stack_string[37] = "This is a string allocated to stack\n";
   char *heap_string;
 
@@ -255,8 +260,9 @@ void setup()
   Serial.println();
 
   /*
-  *  Notice I have not yet freed first heap_string. Let's see what happens when we free the
-   * first string before 3 lines.
+  *  Notice I have not yet freed first heap_string.
+   * Let's see what happens when we free the
+  *  first string before 3 lines.
   */
   free(heap_string);
   Serial.print("SRAM Space after free(heap_string): ");
@@ -270,14 +276,12 @@ void setup()
    * cannot simply shift fragmented memory spaces around. Remember, memories work 
   *  based on addresses; us assigning variables means that variable will occupy 
    * certain memory space, denoted by memory address.
-  */
-
-  /*
-  *  Question remains; how do we avoid memory fragmentation? It is simple; LIFO.
-   * LIFO stands for Last In, First Out. Any heap memory allocated at very last should
-  *  be freed first. This means, above example, 3 line strings should have freed BEFORE
-   * we free single-line string.
-  */
+  *
+   * Question remains; how do we avoid memory fragmentation? It is simple; LIFO.
+  *  LIFO stands for Last In, First Out. Any heap memory allocated at very last should
+   * be freed first. This means, above example, 3 line strings should have freed BEFORE
+  *  we free single-line string.
+   */
   for(i = 2; i >= 0; i--) /* Since we assigned index 2 at very last, we start w/ index 2*/
   {
     free(heap_lines[i]);
@@ -295,7 +299,7 @@ void setup()
 
   /*
   *  When you allocate heap space for structures, variables inside structures are not
-   * initialized.
+   * initialized.callocl
   */
   heap_node->heap_size = calloc(20, 20 * sizeof(int) );
   for(i = 0; i < 20; i++)
@@ -320,16 +324,14 @@ void setup()
 
   /* To free the structure's memory, just like matrix, start with inside, then go outward */
   free(heap_node->heap_name);
-  Serial.print("SRAM Space after releasing structure: ");
-  Serial.println(getSRAM());
-  
   free(heap_node->heap_size);
-  Serial.print("SRAM Space after releasing structure: ");
-  Serial.println(getSRAM());
-  
   free(heap_node);
   Serial.print("SRAM Space after releasing structure: ");
   Serial.println(getSRAM());
+
+  /* Other ways to compact memory size is by free, malloc and realloc.
+   *  What this mean is that 
+  */
 
   /* Stop executing */
   while(true);
