@@ -1,15 +1,19 @@
-// Arduino Workshop
-// Works_021
-// Memory Management (3)
+/*
+*  Arduino Workshop
+ * Works_021
+*  Memory Management (4)
+ */
 
 /**
  * Some other ways to save memory through arduino...
  */
 
+/* Variables */
 String sram = "SRAM: ";
+
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
 
 void loop()
@@ -27,6 +31,10 @@ void loop()
   delay(1000);
 }
 
+/*
+ * __brkval is the highest point of allocated heap memory.
+ * __heap_start is the starting point of allocated heap memory.
+ */
 int getSRAM()
 {
   extern int __heap_start, *__brkval;
