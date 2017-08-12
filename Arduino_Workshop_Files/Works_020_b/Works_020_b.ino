@@ -1,26 +1,26 @@
 /*
 *  Arduino Workshop
  * Works_020_b
-*  Memory Management (3)
+*  Memory Management (2)
  */
 
 /*
-*  Heap Memory Management
- * This will show how to allocate and free heap memory space(s).
+*  Stack Memory
+ * This will show how stack memories can cause stack overflow.
 */
 
 struct node
 {
-  int* heap_size;
-
-  char* heap_name;
+  char node_name[50];
+  int age;
+  int node_size[20];
 };
 
 void setup()
 {
   /* For displaying data */
   Serial.begin(115200);
-  Serial.println("**********HEAP AND DYNAMIC ALLOCATION**********");
+  Serial.println("**********STACK AND STACK ALLOCATION**********");
 
   /* Print how much SRAM we have at the beginning */
   Serial.print("Initial SRAM Space: ");
