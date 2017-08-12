@@ -66,7 +66,7 @@ void EEPROM_WriteInt(int address, int value)
 int EEPROM_ReadInt(int address)
 {
   int value = 0;
-  byte* p = (byte*)(void*) &value;
+  byte* p = (byte*) &value;
   for(int i = 0; i < sizeof(value); i++)
   {
     *p++ = EEPROM.read(address++);
