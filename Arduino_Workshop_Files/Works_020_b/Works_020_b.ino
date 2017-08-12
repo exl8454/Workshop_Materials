@@ -8,45 +8,47 @@
 *  Heap Memory Management
  * This will show how to allocate and free heap memory space(s).
 */
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-struct Node
+struct node
 {
-  char *heap_name;
-  int *heap_size;
+  int* heap_size;
+
+  char* heap_name;
 };
 
 void setup()
 {
   /* For displaying data */
   Serial.begin(115200);
+  Serial.println("**********HEAP AND DYNAMIC ALLOCATION**********");
 
   /* Print how much SRAM we have at the beginning */
   Serial.print("Initial SRAM Space: ");
   Serial.println(getSRAM());
   Serial.println();
 
-  /* Regardless of what type of data type we allocate, we always use   */
-  /* -> malloc(size_in_byte);                                          */
-  /* -> calloc(num_items, size_in_byte);                               */
-  /* -> realloc(initial_pointer, new_size_in_byte);                    */
-  /* We will look into each one.                                       */
-  /* Remember, you can only use allocate functions with pointers ONLY! */
-
-  /* malloc(size_in_byte) is to allocate heap memory, without initialization.*/
-  /* This also means you can allocate memory size for an array. */
   /*
+  *  Regardless of what type of data type we allocate, we always use
+   * -> malloc(size_in_byte);
+  *  -> calloc(num_items, single_item_size);
+   * -> realloc(initial_pointer, new_size_in_byte);
+  *  We will look into each one.
+   * 
+  * Remember, you can only use allocate functions with pointers ONLY!
+   */
+
+  /*
+  *  malloc(size_in_byte) is to allocate heap memory, without initialization.
+   * This also means you can allocate memory size for an array.
   *  Remember, all functions takes size as BYTE. This means you have to define
    * Memory size as in BYTE (You can use sizeof(data_type) to get size)
   */
   int heap_size = 1;
-  int* heap_int = malloc(heap_size * sizeof(int)); /* This will allocate memory for 1 int*/
-  heap_int[0] = 0;
-  Serial.print("heap_int[0]: "); Serial.println(heap_int[0]);
+  int* heap_int = malloc(sizeof(int)); /* This will allocate memory for 1 int*/
+  *heap_int = 10;
+  Serial.print("heap_int: "); Serial.println(*heap_int);
 
-  Serial.print("SRAM Space: ");
+  Serial.print("SRAM Space after malloc(sizeof(int)): ");
   Serial.println(getSRAM());
   Serial.println();
 
@@ -54,6 +56,7 @@ void setup()
   *  realloc(initial_pointer, new_size_in_byte) basically 'reallocates' new memory space
    * and returns its new memory location pointer. If new pointer is fail to allocate,
   *  function returns NULL.
+  *  If realloc function fails to find new space, its pointer will set to initial_pointer.
    */
 
   heap_size *= 2;
@@ -63,10 +66,11 @@ void setup()
   else
     Serial.println("Could not reallocate new heap size");
 
-  heap_int[1] = 1;
-  Serial.print("heap_int[1]: "); Serial.println(heap_int[1]);
+  Serial.print("heap_int[1] (before): "); Serial.println(heap_int[1]);
+  heap_int[1] = 20;
+  Serial.print("heap_int[1] (after): "); Serial.println(heap_int[1]);
 
-  Serial.print("SRAM Space: ");
+  Serial.print("SRAM Space after realloc(): ");
   Serial.println(getSRAM());
   Serial.println();
 
@@ -114,10 +118,15 @@ void setup()
    * Usually, calloc is ideal for single data type, which means it might cause
   *  problem with strings(ie. array of char) since every space is filled with zeros.
    */
-  heap_size = 1;
-  heap_int = calloc(heap_size, heap_size * sizeof(int));
+  heap_size = 10;
+  heap_int = calloc(heap_size, sizeof(int));
 
-  Serial.print("heap_int[0] with calloc: "); Serial.println(heap_int[0]);
+  for(i = 0; i < 10; i++)
+  {
+    Serial.print("heap_int["); Serial.print(i); Serial.print("]:");
+    Serial.println(heap_int[i]);
+  }
+  
   for(i = 0; i < 10; i++)
   {
     if(i >= heap_size)
@@ -202,6 +211,7 @@ void setup()
     */
   }
   free(heap_matrix_float);
+  heap_matrix_float = NULL;
 
   Serial.print("SRAM Space after free 2 x 10 float Matrix: ");
   Serial.println(getSRAM());
@@ -263,11 +273,12 @@ void setup()
   *  Notice I have not yet freed first heap_string.
    * Let's see what happens when we free the
   *  first string before 3 lines.
+  *  (Comment out after demonstration)
   */
-  free(heap_string);
-  Serial.print("SRAM Space after free(heap_string): ");
-  Serial.println(getSRAM());
-  Serial.println();
+//  free(heap_string);
+//  Serial.print("SRAM Space after free(heap_string): ");
+//  Serial.println(getSRAM());
+//  Serial.println();
 
   /*
   *  Notice how memory spaces changes; it stays the same. This is because we actually
@@ -282,59 +293,79 @@ void setup()
    * be freed first. This means, above example, 3 line strings should have freed BEFORE
   *  we free single-line string.
    */
-  for(i = 2; i >= 0; i--) /* Since we assigned index 2 at very last, we start w/ index 2*/
+  for(i = 2; i >= 0; i--)
   {
     free(heap_lines[i]);
   }
+  /*
+  *  Since we assigned index 2 at very last, we start w/ index 2. However, order doesn't
+   * matter that much. We are doing this just to show proper LIFO order.
+  */
   free(heap_lines);
-  free(heap_string); /* This doesn't need here, but we added to show proper memory de-
-                        allocation. */
+  free(heap_string);
 
   Serial.print("SRAM Space after free-ing all strings: ");
   Serial.println(getSRAM());
   Serial.println();
 
   /* Yes, you can assign structures to heap as well! */
-  struct Node* heap_node = malloc( sizeof(struct Node) );
+  char aName[] = "John";
+  struct node* heap_node = malloc( sizeof(struct node) );
+  heap_size = 2;
 
   /*
   *  When you allocate heap space for structures, variables inside structures are not
-   * initialized.callocl
+   * initialized.
   */
-  heap_node->heap_size = calloc(20, 20 * sizeof(int) );
+  heap_node->heap_name = calloc((strlen(aName) + 1), sizeof(char));
+  strcpy(heap_node->heap_name, aName);
+  Serial.print("heap_name: "); Serial.println(heap_node->heap_name);
+  
+  Serial.print("SRAM Space after heap_name: ");
+  Serial.println(getSRAM());
+  Serial.println();
+
+  heap_node->heap_size = malloc(heap_size * sizeof(int));
+  heap_node->heap_size[0] = 10;
   for(i = 0; i < 20; i++)
   {
-    heap_node->heap_size[i] = i * i;
+    if(i >= heap_size)
+    {
+      heap_size *= 2;
+      temp_int = realloc(heap_node->heap_size, heap_size * sizeof(int));
+      if(temp_int != NULL)
+      {
+        heap_node->heap_size = temp_int;
+        Serial.print("New heap size: "); Serial.println(heap_size);
+      }
+      else
+        Serial.println("Fail to reallocate new size");
+    }
+    heap_node->heap_size[i] = (i + 1) * 10;
   }
+  Serial.println();
 
-  heap_node->heap_name = malloc( (strlen(stack_string) + 1) * sizeof(char));
-  strcpy(heap_node->heap_name, stack_string);
-
-  Serial.println("heap_node");
-  Serial.print("heap_name: "); Serial.print(heap_node->heap_name);
   for(i = 0; i < 20; i++)
   {
     Serial.print("heap_size["); Serial.print(i); Serial.print("]: ");
     Serial.println(heap_node->heap_size[i]);
   }
-
-  Serial.print("SRAM Space after allocating structure: ");
+  
+  Serial.print("SRAM Space after heap_size: ");
   Serial.println(getSRAM());
   Serial.println();
 
   /* To free the structure's memory, just like matrix, start with inside, then go outward */
-  free(heap_node->heap_name);
   free(heap_node->heap_size);
+  free(heap_node->heap_name);
   free(heap_node);
+  
   Serial.print("SRAM Space after releasing structure: ");
   Serial.println(getSRAM());
 
   /* Other ways to compact memory size is by free, malloc and realloc.
    *  What this mean is that 
   */
-
-  /* Stop executing */
-  while(true);
 }
 
 void loop()
@@ -344,7 +375,7 @@ void loop()
 int getSRAM()
 {
   extern int __heap_start, *__brkval;
-  int v;
+  char v;
 
   return (int) &v - (__brkval == 0 ? (int) &__heap_start : (int) __brkval);
 }
