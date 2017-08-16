@@ -37,6 +37,24 @@ int main(void)
 	if (b != 0)
 		printf("b is true\n");
 
+	/*
+	*	if-else statement is similar to python.
+	 */
+	if (a == b)
+		printf("a is equal to b\n");
+	else
+		printf("a and b is different\n");
+
+	/*
+	*	For if-else if-else statement, unlike python where it was if-elif-else, we
+	 *	fully state if-else if-else.
+	*/
+	if (a == b)
+		printf("a is equal to b\n");
+	else if (a < b)
+		printf("a is less than b\n");
+	else
+		printf(" a is bigger than b\n");
 
 	getchar();
 	return 0;
