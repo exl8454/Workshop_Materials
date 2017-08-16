@@ -10,13 +10,10 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Works_000.c" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{CEE23317-B382-4BA4-9A1E-BF45BCE26CD7}</ProjectGuid>
+    <ProjectGuid>{A96DD5C0-D7E9-4A59-A75B-682D87E12DFB}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>C_Works_000</RootNamespace>
+    <RootNamespace>C_Works</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -80,6 +77,10 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Works_000.c" />
+    <ClCompile Include="Works_001.c" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

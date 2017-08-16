@@ -18,5 +18,8 @@
     <ClCompile Include="Works_000.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Works_001.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

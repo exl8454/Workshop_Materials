@@ -1,21 +1,21 @@
 /*
 *	Electronics Workshop
  *	Works_000.c
-*	Intro to C Programming
+*	Intro to C Programming (1)
  *	First step into C Programming
 *	C programming has no built-in function for printing to screen
  *	hence why the stdio.h is included. stdio stands for standard
 *	input/output.
-*/
+ */
 #include <stdio.h>
 
-int main(void)
+int mainVoid(void)
 {
 	/*
 	*	To comply with C89 standard, all variables must be declared at the
-	 *	beginning of the code. Assining value to variables can come after.
+	*	beginning of the code. Assining value to variables can come after.
 	*	C has 7 different data types;
-	 *	char, short, int, long, float, double, and long double
+	*	char, short, int, long, float, double, and long double
 	*/
 	char c = 'c'; /* char is the smallest size among 7 types. */
 	short s = 32767; /* short has size of 2 bytes. */
@@ -27,9 +27,9 @@ int main(void)
 
 	/*
 	*	printf(const char* format, ...); allows us to print a
-	 *	string to screen, with given format. C does not have default
+	*	string to screen, with given format. C does not have default
 	*	option for changing line, so we must include newline delimeter
-	 *	\n at the end to change line.
+	*	\n at the end to change line.
 	*/
 	printf("Hello World!"); /* This will not change line */
 	printf(" This is C!\n"); /* This will change line */
@@ -37,7 +37,7 @@ int main(void)
 
 	/*
 	*	To print a value, use format delimiter, then specify the variable to print
-	 */
+	*/
 	printf("For char, use %%c: %c\n", c);
 	printf("For short, use %%d: %d\n", s);
 	printf("For int, use %%d: %d\n", i);
@@ -49,7 +49,7 @@ int main(void)
 
 	/*
 	*	To format a value, use %[flags][width][.precision][length]specifier
-	 *	width and .precision comes handy when it comes to organzing numbers
+	*	width and .precision comes handy when it comes to organzing numbers
 	*/
 	printf("Width of 20, %20d\n", i);
 	printf("Width of 20, %20f\n", f);
@@ -60,9 +60,9 @@ int main(void)
 
 	/*
 	*	When running an application, a console will popup and will close
-	 *	instantly, because it returns 0 at the end immediately. To prevent
+	*	instantly, because it returns 0 at the end immediately. To prevent
 	*	console from closing immediately, we add getchar(); function at the
-	 *	end. This will prevent window from closing until we type enter.
+	*	end. This will prevent window from closing until we type enter.
 	*/
 	getchar();
 	return 0;
