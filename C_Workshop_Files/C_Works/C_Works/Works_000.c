@@ -9,7 +9,7 @@
  */
 #include <stdio.h>
 
-int mainVoid(void)
+int main_0(void)
 {
 	/*
 	*	To comply with C89 standard, all variables must be declared at the
@@ -21,7 +21,7 @@ int mainVoid(void)
 	short s = 32767; /* short has size of 2 bytes. */
 	int i = 2147483647; /* int has size of 4 bytes, but it starts from 2 bytes. */
 	long l = 2147483647; /* long has size of 4 bytes. */
-	float f = 0.123456; /* float has size of 4 bytes, and has precision up to 6 decimal places. */
+	float f = 0.123456f; /* float has size of 4 bytes, and has precision up to 6 decimal places. */
 	double d = 3.14; /* double has size of 8 bytes, and has precision up to 15 decimal places. */
 	long double ld = 6.28; /* long double has size of 10 bytes, and has precision up to 19 decimal places. */
 
