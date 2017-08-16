@@ -28,6 +28,9 @@ int main(void)
 		printf("a is false\n");
 
 	b = 1;
+	if (b)
+		printf("b is true \n");
+
 	/*
 	*	!= is similar to not(b == 0) in python.
 	*/
