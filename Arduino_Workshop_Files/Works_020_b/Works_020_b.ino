@@ -57,7 +57,7 @@ void loop()
   f(val);
   /*
    * But apparently, we notice SRAM still remains the same. Why?
-   * This is because Arduino actually handles garbage collection abit.
+   * This is because Arduino actually handles garbage collection a bit.
    * That is, Arduino will handle the stack memory to its best to
    * keep sufficient memory.
   */
